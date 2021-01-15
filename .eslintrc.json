@@ -33,7 +33,13 @@
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "quotes": ["error", "double"],
+    "space-before-function-paren": ["error", {
+      "anonymous": "always",
+      "named": "never",
+      "asyncArrow": "always"
+    }]
   },
   "settings": {
     "import/resolver": {

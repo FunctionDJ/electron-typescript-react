@@ -1,20 +1,24 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { GlobalStyle } from './styles/GlobalStyle'
-
-import Greetings from './components/Greetings'
-
-const mainElement = document.createElement('div')
-mainElement.setAttribute('id', 'root')
-document.body.appendChild(mainElement)
+import React from "react"
+import { render } from "react-dom"
+import "normalize.css"
+import "@blueprintjs/icons/lib/css/blueprint-icons.css"
+import "@blueprintjs/core/lib/css/blueprint.css"
+import "./App.css"
+import { Tab, Tabs } from "@blueprintjs/core"
+import Input from "./tabs/Input"
+import Output from "./tabs/Output"
 
 const App = () => {
   return (
-    <>
-      <GlobalStyle />
-      <Greetings />
-    </>
+    <Tabs animate={false} defaultSelectedTabId={"output"}>
+      <Tab id="input" title="Input" panel={<Input/>}/>
+      <Tab id="output" title="Output" panel={<Output/>}/>
+    </Tabs>
   )
 }
 
-render(<App />, mainElement)
+const root = document.createElement("div");
+root.classList.add("bp3-dark");
+document.body.appendChild(root);
+
+render(<App />, root)

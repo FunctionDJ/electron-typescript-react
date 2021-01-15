@@ -19,6 +19,22 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [ "file-loader"
+          // {
+          //   loader: 'file-loader',
+          //   options: {
+          //     name: '[name].[ext]',
+          //     outputPath: 'fonts/'
+          //   }
+          // }
+        ]
       }
     ]
   },
@@ -29,7 +45,10 @@ module.exports = {
     hot: true,
     host: '0.0.0.0',
     port: 4000,
-    publicPath: '/'
+    publicPath: '/',
+    headers: {
+      "Content-Security-Policy": "default-src 'self' 'unsafe-inline'; connect-src 'self' serato.com twitch.tv ws:"
+    }
   },
   output: {
     path: path.resolve(rootPath, 'dist/renderer'),
@@ -37,6 +56,8 @@ module.exports = {
     publicPath: './'
   },
   plugins: [
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      title: "!song"
+    })
   ]
 }
